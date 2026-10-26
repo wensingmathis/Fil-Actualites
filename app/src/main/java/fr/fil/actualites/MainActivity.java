@@ -55,6 +55,7 @@ public final class MainActivity extends Activity {
     private Typeface regular;
     private Typeface bold;
     private boolean showingSources;
+    private boolean darkTheme;
     private boolean destroyed;
     private int generation;
     private LinearLayout screen;
@@ -67,12 +68,12 @@ public final class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        boolean dark = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
+        darkTheme = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
             == Configuration.UI_MODE_NIGHT_YES;
-        WHITE = dark ? 0xff121212 : Color.WHITE;
-        INK = dark ? 0xfff5f5f5 : 0xff151515;
-        GRAY = dark ? 0xffaaaaaa : 0xff7d7d7d;
-        LIGHT = dark ? 0xff333333 : 0xffe9e9e9;
+        WHITE = darkTheme ? 0xff121212 : Color.WHITE;
+        INK = darkTheme ? 0xfff5f5f5 : 0xff151515;
+        GRAY = darkTheme ? 0xffaaaaaa : 0xff7d7d7d;
+        LIGHT = darkTheme ? 0xff333333 : 0xffe9e9e9;
         storage = new Storage(this);
         regular = Typeface.createFromAsset(getAssets(), "Arimo-Regular.ttf");
         bold = Typeface.createFromAsset(getAssets(), "Arimo-Bold.ttf");
@@ -80,7 +81,7 @@ public final class MainActivity extends Activity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(WHITE);
         window.setNavigationBarColor(WHITE);
-        window.getDecorView().setSystemUiVisibility(dark ? 0
+        window.getDecorView().setSystemUiVisibility(darkTheme ? 0
             : View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         showNews();
     }
@@ -317,10 +318,11 @@ public final class MainActivity extends Activity {
             check.setChecked(storage.selected().contains(source.url));
             check.setThumbTintList(new ColorStateList(
                     new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}},
-                    new int[]{INK, 0xfff6f6f6}));
+                    new int[]{INK, darkTheme ? 0xff404040 : 0xfff6f6f6}));
             check.setTrackTintList(new ColorStateList(
                     new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}},
-                    new int[]{0xffb5b5b5, 0xffcecece}));
+                        new int[]{darkTheme ? 0xff888888 : 0xffb5b5b5,
+                            darkTheme ? 0xff666666 : 0xffcecece}));
             check.setOnCheckedChangeListener((buttonView, checked) -> storage.setSelected(source.url, checked));
             line.addView(check);
             line.setOnClickListener(v -> check.setChecked(!check.isChecked()));
