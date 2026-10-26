@@ -1,98 +1,80 @@
-# Fil — L'actualité sans bruit
+# Fil — l'actualité, simplement
 
-Fil est une application Android pensée pour une seule chose : lire les infos simplement, clairement et sans friction.
+Fil est une application Android minimaliste pour lire les actualités sans publicité, sans compte et sans tracking.
 
-Plus de publicités agressives, plus de comptes à créer, plus de tracking. Vous choisissez vos sources, vous lisez ce qui compte, et vous gardez le contrôle sur votre expérience.
+Le projet est open source et le code appartient à son auteur, Wensing Mathis.
 
-## Pourquoi choisir Fil ?
+## Présentation
 
-- Une lecture simple et lisible
-- Sans publicité ni recommandations intrusives
+Fil regroupe les articles issus de flux RSS/Atom choisis par l'utilisateur, avec une lecture claire et rapide.
+
+- Sans publicité
 - Sans compte utilisateur
-- Sans surveillance inutile
-- Compatible avec les flux RSS/Atom
-- Fonctionne en français, avec un design net et épuré
+- Sans suivi analytique
+- Sans dépendance à un serveur propriétaire
+- Compatible avec les flux RSS/Atom en HTTPS
 
-## Ce que vous pouvez faire avec Fil
+## Fonctionnalités
 
-- Suivre les actualités de vos sources préférées
-- Ajouter n'importe quel flux RSS ou Atom en HTTPS
-- Lire les titres, résumés et dates de publication rapidement
-- Ouvrir les articles complets dans le navigateur de votre téléphone
-- Relire les 200 derniers titres consultés sans connexion
-- Choisir entre un thème clair ou sombre
-- Profiter d'une interface minimaliste, rapide et sans distractions
-
-## Une alternative crédible à l'actualité traditionnelle
-
-Fil n'est pas une plateforme d'actualité qui vous pousse vers des contenus sponsorisés. C'est un lecteur RSS indépendant et respectueux de votre attention.
-
-Vous décidez :
-- quelles sources suivre ;
-- quels sujets suivre ;
-- combien d'actualités consulter ;
-- comment lire sans être bombardé de publicité.
-
-## Fonctionnalités principales
-
-- Fil d'actualité simple : source, date, titre, résumé
-- Sélection de sources comme Franceinfo, Le Monde et Service-Public
-- Ajout de flux RSS/Atom personnalisés via Sources → + Ajouter un flux RSS
-- Actualisation manuelle via Actualiser
-- Sauvegarde locale des 200 derniers titres consultés
-- Interface entièrement en français
-- Mode clair et mode sombre selon le réglage Android
+- Lecture des titres, dates et résumés
+- Ajout de sources comme Franceinfo, Le Monde et Service-Public
+- Ajout de n'importe quel flux RSS/Atom
+- Actualisation manuelle
+- Sauvegarde locale des derniers articles consultés
+- Mode clair et sombre
 - Ouverture des articles complets dans le navigateur
-- Aucune pub, aucun SDK publicitaire, aucune analytique, aucun compte utilisateur
-- Aucun serveur propriétaire ni collecte de données inutiles
 
 ## Android pris en charge
 
-Android 8.0 ou supérieur (API 26+), y compris les téléphones Samsung Galaxy A26 5G.
+- Android 8.0 ou supérieur (API 26+)
 
-## Obtenir l'APK dans Android Studio
+## Build
 
-1. Ouvrir ce dossier `Fil-Actualites` dans Android Studio.
-2. Laisser Android Studio récupérer le SDK Android 35 et les dépendances Gradle nécessaires. Utiliser Java 17 et Gradle 8.9.
-3. Dans le terminal d'Android Studio, exécuter : `gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug`
-4. Récupérer le fichier `app/build/outputs/apk/debug/app-debug.apk`.
-5. Envoyer le fichier sur le téléphone et l'ouvrir pour l'installer.
+### Avec Android Studio
 
-## Obtenir l'APK sans Android Studio
+1. Ouvrir le dossier `Fil-Actualites` dans Android Studio.
+2. Récupérer les dépendances Gradle et le SDK Android.
+3. Utiliser Java 17 et Gradle 8.9.
+4. Exécuter :
 
-Le projet contient un workflow GitHub Actions qui compile automatiquement l'APK à chaque push vers `main`.
+```bash
+gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug
+```
 
-1. Ouvrir l'onglet Actions du dépôt.
-2. Choisir Construire APK Android.
-3. Télécharger l'artefact finalisé.
-4. Installer le fichier APK sur votre téléphone.
+5. Récupérer le fichier :
 
-## Confidentialité et sécurité
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
 
-- L'application demande uniquement la permission `INTERNET`.
-- Les flux RSS sont téléchargés directement en HTTPS depuis les sites choisis.
-- Les URL non sécurisées et les hôtes douteux sont refusés.
-- Aucune donnée de localisation, mot de passe ou identifiant publicitaire n'est demandé.
-- Les sources et la liste des articles restent stockées uniquement sur le téléphone.
-- Aucun traitement JavaScript distant n'est exécuté dans l'application.
+### Via GitHub Actions
+
+Le dépôt contient un workflow Android qui construit automatiquement l'APK à chaque push.
+
+## Confidentialité
+
+- Permission `INTERNET` uniquement
+- Les flux sont téléchargés directement depuis leurs sources
+- Aucune donnée de localisation, mot de passe ou identifiant publicitaire n'est demandée
+- Les paramètres et les derniers articles sont enregistrés localement sur le téléphone
 
 ## Tech
 
 - Java 17
-- API Android native
+- Android native
 - Gradle 8.9
 - Android Gradle Plugin 8.7.3
 - compileSdk 35
 - minSdk 26
-- RSS 2.0 et Atom
-- XML parsing via XmlPullParser
+- RSS 2.0 / Atom
+- Parsing XML via `XmlPullParser`
 
-## Licence du code
+## Licence
 
-Le code du projet est distribué sous licence MIT. Voir [LICENSE](LICENSE).
+Le code du projet est open source et publié sous licence MIT.
 
-## Licence de la police
+Le code appartient à son auteur, Wensing Mathis.
 
-Les fichiers `app/src/main/assets/Arimo-Regular.ttf` et `Arimo-Bold.ttf` viennent du paquet libre `fonts-croscore`, sous licence SIL Open Font License 1.1.
+## Contribuer
 
-Fil est une solution simple, utile et respectueuse de votre temps. Une application conçue pour lire l'actualité sans détour, sans publicité, sans dérangement et sans dépendre d'un grand système propriétaire.
+Les contributions sont les bienvenues, à condition de respecter le cadre du projet et de conserver l'esprit open source et respectueux de la vie privée.
