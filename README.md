@@ -1,21 +1,50 @@
-# Fil — l'actualité, simplement
+# Fil — L'actualité sans bruit
 
-Application Android native, minimaliste, sans publicité, sans compte et sans suivi. Fil rassemble les actualités des flux RSS choisis par l'utilisateur.
+Fil est une application Android pensée pour une seule chose : lire les infos simplement, clairement et sans friction.
 
-## Fonctionnalités
+Plus de publicités agressives, plus de comptes à créer, plus de tracking. Vous choisissez vos sources, vous lisez ce qui compte, et vous gardez le contrôle sur votre expérience.
 
-- Fil d'actualité simple : source, date, titre, résumé.
-- Choix des sources : Franceinfo, Le Monde, Service-Public.
-- Ajout de n'importe quel flux RSS/Atom en HTTPS via **Sources → + Ajouter un flux RSS**.
-- Actualisation manuelle via **Actualiser**.
-- Sauvegarde locale des 200 derniers titres consultés pour les relire sans réseau.
-- Interface entièrement en français, avec mode clair ou sombre selon le réglage Android.
-- Ouverture des articles complets dans le navigateur du téléphone.
-- Aucune publicité, SDK publicitaire, analytique, compte utilisateur ni serveur propriétaire dans l'application.
-- Pas d'images ni de recommandations algorithmiques.
-- Police **Arimo** (métriquement compatible avec Arial, sous licence libre OFL 1.1). Arial elle-même n'est pas incluse pour des raisons de licence.
+## Pourquoi choisir Fil ?
 
-**Important :** Fil est un lecteur RSS indépendant, **pas l'application officielle Google Actualités**. Les articles complets s'ouvrent sur les sites des éditeurs, qui peuvent afficher leurs propres publicités, abonnements ou cookies. Certains flux changent ou tombent en panne indépendamment de l'application.
+- Une lecture simple et lisible
+- Sans publicité ni recommandations intrusives
+- Sans compte utilisateur
+- Sans surveillance inutile
+- Compatible avec les flux RSS/Atom
+- Fonctionne en français, avec un design net et épuré
+
+## Ce que vous pouvez faire avec Fil
+
+- Suivre les actualités de vos sources préférées
+- Ajouter n'importe quel flux RSS ou Atom en HTTPS
+- Lire les titres, résumés et dates de publication rapidement
+- Ouvrir les articles complets dans le navigateur de votre téléphone
+- Relire les 200 derniers titres consultés sans connexion
+- Choisir entre un thème clair ou sombre
+- Profiter d'une interface minimaliste, rapide et sans distractions
+
+## Une alternative crédible à l'actualité traditionnelle
+
+Fil n'est pas une plateforme d'actualité qui vous pousse vers des contenus sponsorisés. C'est un lecteur RSS indépendant et respectueux de votre attention.
+
+Vous décidez :
+- quelles sources suivre ;
+- quels sujets suivre ;
+- combien d'actualités consulter ;
+- comment lire sans être bombardé de publicité.
+
+## Fonctionnalités principales
+
+- Fil d'actualité simple : source, date, titre, résumé
+- Sélection de sources comme Franceinfo, Le Monde et Service-Public
+- Ajout de flux RSS/Atom personnalisés via Sources → + Ajouter un flux RSS
+- Actualisation manuelle via Actualiser
+- Sauvegarde locale des 200 derniers titres consultés
+- Interface entièrement en français
+- Mode clair et mode sombre selon le réglage Android
+- Ouverture des articles complets dans le navigateur
+- Aucune pub, aucun SDK publicitaire, aucune analytique, aucun compte utilisateur
+- Aucun serveur propriétaire ni collecte de données inutiles
 
 ## Android pris en charge
 
@@ -23,47 +52,47 @@ Android 8.0 ou supérieur (API 26+), y compris les téléphones Samsung Galaxy A
 
 ## Obtenir l'APK dans Android Studio
 
-1. Ouvrir ce dossier `Fil-Actualites` dans **Android Studio**.
-2. Laisser Android Studio récupérer le SDK Android 35 et les dépendances Gradle nécessaires. Utiliser **Java 17** et **Gradle 8.9**.
-3. Dans le terminal d'Android Studio, exécuter `gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug` (ou **Build → Build APK(s)**).
+1. Ouvrir ce dossier `Fil-Actualites` dans Android Studio.
+2. Laisser Android Studio récupérer le SDK Android 35 et les dépendances Gradle nécessaires. Utiliser Java 17 et Gradle 8.9.
+3. Dans le terminal d'Android Studio, exécuter : `gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug`
 4. Récupérer le fichier `app/build/outputs/apk/debug/app-debug.apk`.
-5. Envoyer le fichier sur le téléphone, puis l'ouvrir pour l'installer (autoriser l'installation depuis cette source si Android le demande).
+5. Envoyer le fichier sur le téléphone et l'ouvrir pour l'installer.
 
-## Obtenir l'APK sans Android Studio : GitHub Actions
+## Obtenir l'APK sans Android Studio
 
-Le projet contient un fichier `.github/workflows/apk.yml` qui compile automatiquement l'APK sur les serveurs GitHub à chaque push vers `main`, et peut aussi être lancé manuellement.
+Le projet contient un workflow GitHub Actions qui compile automatiquement l'APK à chaque push vers `main`.
 
-1. Ouvrir l'onglet **Actions** du dépôt.
-2. Choisir **Construire APK Android**. Pour un lancement manuel, sélectionner **Run workflow** et confirmer la branche `main`.
-3. Ouvrir l'exécution terminée, puis télécharger l'artefact **Fil-Actualites-debug**.
-4. Décompresser l'archive : elle contient `Fil-Actualites-debug.apk`, à installer sur Android.
+1. Ouvrir l'onglet Actions du dépôt.
+2. Choisir Construire APK Android.
+3. Télécharger l'artefact finalisé.
+4. Installer le fichier APK sur votre téléphone.
 
-Le workflow exécute `testDebugUnitTest` puis assemble l'APK. Le projet ne contient actuellement pas de tests unitaires dédiés; l'étape détectera et exécutera les tests ajoutés ultérieurement.
+## Confidentialité et sécurité
 
-L'APK `debug` est destiné aux essais personnels. Pour une publication sur une boutique, il faut compiler et signer une version `release` avec une clé de signature privée.
-
-## Vie privée et sécurité
-
-- L'application ne demande que la permission `INTERNET`.
-- Les flux RSS sont téléchargés **directement en HTTPS** depuis les sites choisis. Ces sites voient techniquement les requêtes réseau et l'adresse IP habituelle du téléphone.
-- Les redirections non HTTPS et les hôtes RSS qui résolvent vers des adresses locales ou privées sont refusés; les URL d'articles doivent également utiliser HTTPS.
-- Aucun mot de passe, donnée de localisation ou identifiant publicitaire n'est demandé.
-- Les sources choisies et la dernière liste d'articles sont enregistrées uniquement sur le téléphone (SharedPreferences) et ne sont pas sauvegardées dans le cloud de l'application.
-- Les flux XML ont une taille maximale de 2 Mo et le traitement des DTD est désactivé.
-- Le contenu riche distant n'est jamais exécuté comme du JavaScript dans l'application : seuls les textes des articles sont affichés.
+- L'application demande uniquement la permission `INTERNET`.
+- Les flux RSS sont téléchargés directement en HTTPS depuis les sites choisis.
+- Les URL non sécurisées et les hôtes douteux sont refusés.
+- Aucune donnée de localisation, mot de passe ou identifiant publicitaire n'est demandé.
+- Les sources et la liste des articles restent stockées uniquement sur le téléphone.
+- Aucun traitement JavaScript distant n'est exécuté dans l'application.
 
 ## Tech
 
 - Java 17
-- API Android native (aucune bibliothèque d'interface ni SDK publicitaire)
-- Gradle 8.9, Android Gradle Plugin 8.7.3, compileSdk 35
-- minSdk 26 (Android 8.0)
-- RSS 2.0 et Atom, parsing avec XmlPullParser
-
-## Licence de la police
-
-Les fichiers `app/src/main/assets/Arimo-Regular.ttf` et `Arimo-Bold.ttf` viennent du paquet libre `fonts-croscore`. Leur notice de licence est fournie dans `ARIMO-LICENCE.txt` (SIL Open Font License 1.1).
+- API Android native
+- Gradle 8.9
+- Android Gradle Plugin 8.7.3
+- compileSdk 35
+- minSdk 26
+- RSS 2.0 et Atom
+- XML parsing via XmlPullParser
 
 ## Licence du code
 
-Le code du projet est distribué sous licence MIT (voir [LICENSE](LICENSE)). La police Arimo reste distribuée sous sa licence OFL 1.1 distincte. Utilisez uniquement des flux publics dont les conditions autorisent la consultation; les articles complets restent hébergés par leurs éditeurs.
+Le code du projet est distribué sous licence MIT. Voir [LICENSE](LICENSE).
+
+## Licence de la police
+
+Les fichiers `app/src/main/assets/Arimo-Regular.ttf` et `Arimo-Bold.ttf` viennent du paquet libre `fonts-croscore`, sous licence SIL Open Font License 1.1.
+
+Fil est une solution simple, utile et respectueuse de votre temps. Une application conçue pour lire l'actualité sans détour, sans publicité, sans dérangement et sans dépendre d'un grand système propriétaire.
